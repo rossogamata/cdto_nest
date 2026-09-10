@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { getCourseThemes } from "@/lib/content";
@@ -20,8 +21,15 @@ export async function Header() {
   return (
     <header className="border-b border-neutral-200 dark:border-neutral-800">
       <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
-        <Link href="/" className="text-sm font-semibold tracking-tight">
-          CDTO
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/logo.jpg"
+            alt="CDTO"
+            width={28}
+            height={28}
+            className="rounded-full object-cover"
+          />
+          <span className="text-sm font-semibold tracking-tight">CDTO</span>
         </Link>
         <div className="flex items-center gap-4">
           <span className="text-xs text-neutral-500">{session.user.email}</span>
