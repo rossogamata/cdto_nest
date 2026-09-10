@@ -25,6 +25,9 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends openssl \
     && rm -rf /var/lib/apt/lists/*
 ENV NODE_ENV=production
+# Контейнер завжди стоїть за конкретним, контрольованим нами хостом
+# (порт-мапінг або реверс-проксі), тож довіряємо заголовку Host за замовчуванням.
+ENV AUTH_TRUST_HOST=true
 
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/.next ./.next
